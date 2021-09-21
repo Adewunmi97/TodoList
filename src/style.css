@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+}
+
+.todo-card {
+  max-width: 480px;
+  width: 100%;
+  margin: 120px auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.todo-card header {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.67);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.67);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.input-todo input {
+  padding: 12px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+input:focus,
+textarea {
+  outline: none !important;
+}
+
+::placeholder {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.64);
+  font-style: italic;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.67);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  background: rgba(0, 0, 0, 0.05);
+  font-style: italic;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.task-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+.check-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  min-height: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.check-container .checkmark::after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+.check-container input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.menu {
+  width: 32px;
+}
+
+.todoList li {
+  border-top: 1px solid #d4d4d4;
+}
+
+.todo-delete {
+  background: none;
+  flex-shrink: 1;
+}
+
+.todo-delete i {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.edit {
+  padding-left: 15px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  width: 100%;
+  color: #000;
+  border: none;
+  font-size: 16px;
+  background-color: #ccc;
+}
+
+.input-container {
+  width: 85%;
+}
+
+.input-container div {
+  padding: 2px 0 2px 15px;
+}
+
+.input-container input {
+  display: none;
+}
+
+.todoList li:hover .input-container div {
+  display: none;
+}
+
+.todoList li:hover .input-container input {
+  display: block;
+}
+
+.icons i:first-child {
+  display: none;
+  cursor: pointer;
+}
+
+.todoList li:hover .icons i:first-child {
+  display: block;
+}
+
+.todoList li:hover .icons i:last-child {
+  display: none;
+}
+
+.edit:focus {
+  border: none;
+  outline: none;
+}
+
+.fa-trash-alt::before {
+  color: red;
+}
