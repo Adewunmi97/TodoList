@@ -2,40 +2,18 @@ import './style.css';
 
 class TodoList {
   constructor() {
-    this.todos = getTodos();
+    this.todos = [
+      { description: 'Item 1', completed: false, index: 1 },
+      { description: 'Item 2', completed: false, index: 2 },
+      { description: 'Item 3', completed: false, index: 3 },
+    ];
   }
 
- handleCompletedStatus = (e) => {
-   const todos = getTodos();
-   updateStatus(e, todos);
- }
-
- handleEditTodo = (e) => {
-   if (e.keyCode === 13) {
-     const { value } = e.target;
-     const index = parseInt(e.target.dataset.index, 10) - 1;
-     editTodoInStorage(value, index);
-     editTodoInList(value, index);
-   }
- }
-
- handleNewTodo = (e) => {
-   const todos = getTodos();
-   if (e.keyCode === 13) {
-     const newTodo = createTodo(e.target.value, todos);
-     e.target.value = '';
-     todos.push(newTodo);
-     clearList();
-     saveToStorage(todos);
-     this.displayList();
-   }
- }
-
- displayList() {
-   const container = document.querySelector('.todoList');
-   getTodos().forEach((todo, index) => {
-     const li = document.createElement('li');
-     li.innerHTML = `
+  displayList() {
+    const container = document.querySelector('.todoList');
+    this.todos.forEach((todo) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
                   <div class="task-item">
                     <div class="task-info">
                         <div class="check-container">
@@ -53,11 +31,9 @@ class TodoList {
                     </div>
                   </div>
                 `;
-
-     container.appendChild(li);
-   });
-   
- }
+      container.appendChild(li);
+    });
+  }
 }
 
 const todoList = new TodoList();
