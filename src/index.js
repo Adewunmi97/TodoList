@@ -1,3 +1,7 @@
+import { handleDragStart, handleDrop, cancelDefault } from './services/sort';
+import {
+  updateStatus, getTodos,
+} from './services/update';
 import './style.css';
 
 class TodoList {
@@ -9,11 +13,16 @@ class TodoList {
     ];
   }
 
-  displayList() {
-    const container = document.querySelector('.todoList');
-    this.todos.forEach((todo) => {
-      const li = document.createElement('li');
-      li.innerHTML = `
+ handleCompletedStatus = (e) => {
+   const todos = getTodos();
+   updateStatus(e, todos);
+ }
+
+ displayList() {
+   const container = document.querySelector('.todoList');
+   this.todos.forEach((todo, index) => {
+     const li = document.createElement('li');
+     li.innerHTML = `
                   <div class="task-item">
                     <div class="task-info">
                         <div class="check-container">
@@ -31,9 +40,15 @@ class TodoList {
                     </div>
                   </div>
                 `;
-      container.appendChild(li);
-    });
-  }
+     li.draggable = true;
+     li.dataset.index = index;
+     li.addEventListener('dragstart', handleDragStart);
+     li.addEventListener('drop', handleDrop);
+     li.addEventListener('dragenter', cancelDefault);
+     li.addEventListener('dragover', cancelDefault);
+     container.appendChild(li);
+   });
+ }
 }
 
 const todoList = new TodoList();
